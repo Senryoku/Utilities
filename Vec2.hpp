@@ -19,6 +19,19 @@ class Vec2
 		inline Vec2 getNormalized() { return *this/getLength(); }
 		inline void normalize() { *this /= getLength(); }
 		inline Vec2 getOrthogonal() { return Vec2(-y, x); }
+		
+		inline float getAngle()
+		{
+			Vec2 V = getNormalized();
+			return acos(V.x)*((V.y > 0.f) ? 1 : -1);
+		}
+		
+		inline float getAngle(Vec2 V)
+		{
+			Vec2 N = getNormalized();
+			V.normalize();
+			return acos(N*V)*((N.getOrthogonal()*V > 0.f) ? 1 : -1);
+		}
 
 		inline Vec2& operator+=(const Vec2& V)
 		{
