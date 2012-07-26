@@ -78,6 +78,7 @@ class Vec3
 		inline float getLength() { return sqrt(x*x + y*y + z*z); }
 		inline float getSqLength() { return x*x + y*y + z*z; }
 		inline Vec3 getNormalized() { return *this/(this->getLength()); }
+		inline void normalize() { *this /= getLength(); }
 };
 
 #endif
