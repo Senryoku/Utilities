@@ -8,7 +8,11 @@ void wobble(float &CurrentPosition, float TargetPosition, float Force, float Fri
 
 inline unsigned int fact(unsigned int n)
 {
-	return (n <= 1) ? 1 : n*fact(n - 1);
+	unsigned int r = 1;
+	for(unsigned int i = 2; i <= n; i++)
+		r *= i;
+	return r;
+	//return (n <= 1) ? 1 : n*fact(n - 1);
 }
 
 inline unsigned int binomial(unsigned int n, unsigned int k)
