@@ -43,7 +43,6 @@ endif
 all: DynamicBitset
 
 run: DynamicBitset
-	echo $(SHELL)
 ifeq ($(OS), Linux)
 	./$(BINDIR)/DynamicBitset
 endif

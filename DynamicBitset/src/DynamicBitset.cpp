@@ -54,7 +54,7 @@ void DynamicBitset::resize(unsigned int s, bool b)
 	reserve(s);
 	for(unsigned int i = _count; i < _count + DYNAMICBITSET_BOOL_PER_CHAR - (_count % DYNAMICBITSET_BOOL_PER_CHAR); ++i)
 		set(i, b);
-	for(unsigned int i = _count/DYNAMICBITSET_BOOL_PER_CHAR + 1; i <= _size; ++i)
+	for(unsigned int i = _count/DYNAMICBITSET_BOOL_PER_CHAR + 1; i < _size; ++i)
 		_data[i] = (b) ? ~0x00 : 0x00;
-	_count = (_size + 1)*DYNAMICBITSET_BOOL_PER_CHAR - 1;
+	_count = s;
 }

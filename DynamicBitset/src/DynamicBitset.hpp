@@ -10,6 +10,8 @@ class DynamicBitset
 	~DynamicBitset();
 	
 	unsigned int count() const { return _count; }
+	unsigned int sizeInByte() const { return _size; }
+	unsigned int size() const { return _size*DYNAMICBITSET_BOOL_PER_CHAR; }
 	
 	bool operator[](unsigned int idx) const;
 	bool get(unsigned int idx) const;
