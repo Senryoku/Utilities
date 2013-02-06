@@ -2,7 +2,17 @@
 
 DynamicBitset::DynamicBitset() : _size(1), _count(0)
 {
-	_data = new char[1];
+	_data = new char[_size];
+}
+
+DynamicBitset::DynamicBitset(const std::initializer_list<bool>& L) : 
+	_size(L.size()/DYNAMICBITSET_BOOL_PER_CHAR + 1), 
+	_count(L.size())
+{
+	_data = new char[_size];
+	int i = 0;
+	for(auto it = L.begin(); it != L.end(); ++it)
+		set(i++, *it);
 }
 
 DynamicBitset::DynamicBitset(const DynamicBitset& DB) : _size(DB._size), _count(DB._count)

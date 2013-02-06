@@ -7,7 +7,7 @@
 
 void debugDisplay(const DynamicBitset& DB)
 {
-	std::cout << DB.count() << "\t" << DB.size() << "\t";
+	std::cout << " " << DB.count() << "\t" << DB.size() << "\t";
 	for(unsigned int i = 0; i < DB.count(); ++i)
 		std::cout << DB.get(i) << " ";
 	std::cout << std::endl;
@@ -15,6 +15,10 @@ void debugDisplay(const DynamicBitset& DB)
 
 int main(int argc, char** argv)
 {
+	std::cout << "---------------------------------------------------------------------------------"
+	<< std::endl << " Count\tSize\tContent" << std::endl;
+	std::cout << "---------------------------------------------------------------------------------"
+	<< std::endl;
 	DynamicBitset DB;
 	
 	DB.push_back(true);
@@ -40,6 +44,14 @@ int main(int argc, char** argv)
 	DB.resize(32, true);
 	debugDisplay(DB);
 	
+	DynamicBitset DB2 {true, true, false, false, true};
+	debugDisplay(DB2);
+	
+	DynamicBitset DB3 {false, true, false, false, true, true, false, false, true};
+	debugDisplay(DB3);
+	
+	std::cout << "---------------------------------------------------------------------------------"
+	<< std::endl;
 	
 	return 0;
 }

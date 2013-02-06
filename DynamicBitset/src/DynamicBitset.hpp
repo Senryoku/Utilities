@@ -1,19 +1,22 @@
 #pragma once
 
+#include <initializer_list>
+
 #define DYNAMICBITSET_BOOL_PER_CHAR 8
 
 class DynamicBitset
 {
 	public:
 	DynamicBitset();
+	DynamicBitset(const std::initializer_list<bool>& L);
 	DynamicBitset(const DynamicBitset& DB);
 	~DynamicBitset();
 	
-	unsigned int count() const { return _count; }
-	unsigned int sizeInByte() const { return _size; }
-	unsigned int size() const { return _size*DYNAMICBITSET_BOOL_PER_CHAR; }
+	inline unsigned int count() const { return _count; }
+	inline unsigned int sizeInByte() const { return _size; }
+	inline unsigned int size() const { return _size*DYNAMICBITSET_BOOL_PER_CHAR; }
 	
-	bool operator[](unsigned int idx) const;
+	//bool operator[](unsigned int idx) const;
 	bool get(unsigned int idx) const;
 	
 	void set(unsigned int idx, bool b);
@@ -25,5 +28,5 @@ class DynamicBitset
 	private:
 	char*			_data;
 	unsigned int	_size;
-	unsigned int	_count;
+	unsigned int	_count; // = 0;
 };
