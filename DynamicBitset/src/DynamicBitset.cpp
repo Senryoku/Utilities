@@ -7,7 +7,7 @@ DynamicBitset::DynamicBitset() : _size(1), _count(0)
 
 DynamicBitset::DynamicBitset(const DynamicBitset& DB) : _size(DB._size), _count(DB._count)
 {
-	_data = new char[_size + 1];
+	_data = new char[_size];
 	for(unsigned int i = 0; i < _size; ++i)
 		_data[i] = DB._data[i];
 }
@@ -43,16 +43,18 @@ bool DynamicBitset::get(unsigned int idx) const
 void DynamicBitset::reserve(unsigned int s)
 {
 	char* tmp = new char[s/DYNAMICBITSET_BOOL_PER_CHAR + 1];
-	for(unsigned int i = 0; i < _count; ++i)
-		set(i, get(i));
+	for(unsigned int i = 0; i < _size; ++i)
+		tmp[i] = _data[i];
 	_data = tmp;
-	_size = s;
+	_size = s/DYNAMICBITSET_BOOL_PER_CHAR + 1;
 }
 
 void DynamicBitset::resize(unsigned int s, bool b)
 {
 	reserve(s);
-	for(unsigned int i = 0; i < (_size + 1)*DYNAMICBITSET_BOOL_PER_CHAR - 1; ++i)
+	for(unsigned int i = _count; i < _count + DYNAMICBITSET_BOOL_PER_CHAR - (_count % DYNAMICBITSET_BOOL_PER_CHAR); ++i)
 		set(i, b);
+	for(unsigned int i = _count/DYNAMICBITSET_BOOL_PER_CHAR + 1; i <= _size; ++i)
+		_data[i] = (b) ? ~0x00 : 0x00;
 	_count = (_size + 1)*DYNAMICBITSET_BOOL_PER_CHAR - 1;
 }

@@ -93,3 +93,12 @@ class TCPServerSocket : public BaseSocket
 	private:
 	std::vector<TCPSocket>	_connections;
 };
+
+class FTPClient : public TCPSocket
+{
+	public:
+	FTPClient();
+	~FTPClient();
+	
+	private:
+};

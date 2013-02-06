@@ -27,6 +27,11 @@ int main(int argc, char** argv)
 	DB.push_back(true);
 	debugDisplay(DB);
 	
+	DB.resize(32);
+	debugDisplay(DB);
+	DB.resize(64, true);
+	debugDisplay(DB);
+	
 	
 	return 0;
 }

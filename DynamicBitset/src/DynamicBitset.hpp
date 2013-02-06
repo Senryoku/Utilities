@@ -17,7 +17,7 @@ class DynamicBitset
 	void set(unsigned int idx, bool b);
 	void push_back(bool b);
 	
-	void resize(unsigned int s, bool b = true);
+	void resize(unsigned int s, bool b = false);
 	void reserve(unsigned int s);
 	
 	private:

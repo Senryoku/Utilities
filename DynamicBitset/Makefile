@@ -1,3 +1,6 @@
+#Corrige certains problèmes avec le PATH de windows... Commenter si autre système.
+SHELL=C:/Windows/System32/cmd.exe
+
 C = g++
 OBJDIR = obj
 SRCDIR = src
@@ -17,7 +20,11 @@ COMMONOBJ = $(OBJDIR)/DynamicBitset.o
 ifeq ($(SHELL), sh.exe)
 OS := Win
 else
+ifeq ($(SHELL), C:/Windows/System32/cmd.exe)
+OS := Win
+else
 OS := $(shell uname)
+endif
 endif
 
 ifeq ($(OS), Linux)
@@ -36,6 +43,7 @@ endif
 all: DynamicBitset
 
 run: DynamicBitset
+	echo $(SHELL)
 ifeq ($(OS), Linux)
 	./$(BINDIR)/DynamicBitset
 endif
