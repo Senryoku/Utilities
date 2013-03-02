@@ -46,15 +46,30 @@ class BaseSocket
 	int bind();
 	int close();
 	
+	bool isValid() const { return _socket != INVALID_SOCKET; }
 	const SOCKET& getSocket() const { return _socket; }
 	const SOCKADDR_IN& getContext() const { return _context; }
 	std::string getAddr() const { return inet_ntoa(_context.sin_addr); }
 	short getPort() const { return htons(_context.sin_port); }
 	
 	int sendStr(std::string Str);
-	int send(const char* buffer, size_t len = 0);
+	std::string recvStr();
 	
-	int recv(char* buffer, size_t len = 0);
+	bool sendSize(size_t size);
+	
+	size_t recvSize();
+
+	/** @brief Send len octets of buffer through the socket.
+	 * If return value differs from len, the socket is likely to be broken.
+	 * @return The number of octets effectively sent.
+	**/
+	size_t send(const char* buffer, size_t len = 0);
+	
+	/** @brief Receive len octets through the socket writing them into buffer. 
+	 * If return value differs from len, the socket is likely to be broken.
+	 * @return The number of octets effectively received.
+	**/
+	size_t recv(char* buffer, size_t len = 0);
 	
 	static int init();
 	static void cleanup();
@@ -86,6 +101,8 @@ class TCPServerSocket : public BaseSocket
 	~TCPServerSocket();
 	
 	TCPSocket& accept();
+	
+	std::vector<TCPSocket>& getClients() { return _connections; }
 
 	int send(std::string Str);
 	int send(const char* buffer, size_t len = 0);

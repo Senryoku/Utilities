@@ -16,7 +16,8 @@ int main(int argc, char* argv[])
 	else {
 		std::cout << "Connexion reussie ! Tapez /quit pour quitter." << std::endl;
 		char buffer[256];
-		Client.recv(buffer, 256);
+		size_t size = Client.recvSize();
+		Client.recv(buffer, size);
 		std::cout << "[Server] " << buffer << std::endl;
 		do
 		{

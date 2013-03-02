@@ -17,14 +17,15 @@ BaseSocket::BaseSocket(unsigned long addr, int Port, int Type, short Family) : _
 
 BaseSocket::~BaseSocket()
 {
-	if(_socket != INVALID_SOCKET) close();
+	if(isValid()) close();
 }
 
 void BaseSocket::setBlocking(bool b)
 {
 #if defined (WIN32)
 	unsigned long int arg = (b) ? 0 : 1;
-	ioctlsocket(_socket, FIONBIO, &arg);
+	if(ioctlsocket(_socket, FIONBIO, &arg) == SOCKET_ERROR)
+		std::cerr << "Error ioctlsocket() : " << WSAGetLastError() << std::endl;
 #elif defined (linux)
 	int flags = fcntl(_socket, F_GETFL);
 	if(b) fcntl(_socket, F_SETFL, flags & ~O_NONBLOCK);
@@ -47,17 +48,60 @@ int BaseSocket::close()
 
 int BaseSocket::sendStr(std::string Str)
 {
-	return ::send(_socket, Str.c_str(), Str.length() + 1, 0);
+	return sendSize(Str.length() + 1) && send(Str.c_str(), Str.length() + 1) == Str.length() + 1;
 }
 
-int BaseSocket::send(const char* buffer, size_t len)
+std::string BaseSocket::recvStr()
 {
-	return ::send(_socket, buffer, (len > 0) ? len : sizeof(buffer), 0);
+	size_t size = recvSize();
+	char* buff = (char*) malloc(size);
+	recv(buff, size);
+	std::string rStr(buff);
+	free(buff);
+	return rStr;
 }
 
-int BaseSocket::recv(char* buffer, size_t len)
+bool BaseSocket::sendSize(size_t size)
 {
-	return ::recv(_socket, buffer, (len > 0) ? len : sizeof(buffer), 0);
+	char buff[64];
+	itoa(size, buff, 10);
+	return send(buff, 64);
+}
+	
+size_t BaseSocket::recvSize()
+{
+	char buff[64];
+	recv(buff, 64);
+	return atoi(buff);
+}
+	
+size_t BaseSocket::send(const char* buffer, size_t len)
+{
+	size_t sent = 0, res;
+	if(len == 0) len = sizeof(buffer);
+	while(sent < len)
+	{
+		res = ::send(_socket, buffer + sent, len - sent, 0);
+		if(res > 0) sent += res;
+		else return sent;
+	}
+	return sent;
+}
+
+size_t BaseSocket::recv(char* buffer, size_t len)
+{
+	size_t received = 0, res;
+	if(len == 0) len = sizeof(buffer);
+	while(received < len)
+	{
+		res = ::recv(_socket, buffer + received, len - received, 0);
+		if(res > 0) received += res;
+		else if(res == 0) { // Connection closed on the other side.
+			close();
+			return received;
+		} else return received;
+	}
+	return received;
 }
 
 int BaseSocket::init()
@@ -121,6 +165,9 @@ TCPSocket& TCPServerSocket::accept()
 	
 	_connections[NewSocket]._socket = ::accept(_socket, (SOCKADDR*) &_connections[NewSocket]._context, &ContextSize);
 	
+	if(_connections[NewSocket]._socket == INVALID_SOCKET)
+		std::cerr << "Error socket : " << strerror(errno) << std::endl;
+	
 	return _connections[NewSocket];
 }
 
@@ -129,7 +176,7 @@ int TCPServerSocket::send(std::string Str)
 {
 	int r = 0;
 	for(size_t i = 0; i < _connections.size(); ++i)
-		r = r | ::send(_socket, Str.c_str(), Str.length(), 0);
+		r = r | BaseSocket::sendStr(Str);
 	return r;
 }
 
@@ -137,6 +184,6 @@ int TCPServerSocket::send(const char* buffer, size_t len)
 {
 	int r = 0;
 	for(size_t i = 0; i < _connections.size(); ++i)
-		r = r | ::send(_socket, buffer, (len > 0) ? len : sizeof(buffer), 0);
+		r = r | BaseSocket::send(buffer);
 	return r;
 }

@@ -1,3 +1,6 @@
+#Corrige certains problèmes avec le PATH de windows... Commenter si autre système.
+SHELL=C:/Windows/System32/cmd.exe
+
 C = g++
 OBJDIR = obj
 SRCDIR = src
@@ -10,10 +13,14 @@ OBJWIN = $(OBJ:/=\\)
 
 COMMONOBJ = $(OBJDIR)/Socket.o
 
-ifeq ($(SHELL), sh.exe)
+ifeq ($(SHELL), sh.exe) 
+OS := Win
+else
+ifeq ($(SHELL), C:/Windows/System32/cmd.exe)
 OS := Win
 else
 OS := $(shell uname)
+endif
 endif
 
 ifeq ($(OS), Linux)
@@ -26,7 +33,7 @@ LIBS :=
 endif
 ifeq ($(OS), Win)
 RM = del
-LIBS := -lws2_32
+LIBS := -lws2_32 -lsfml-system
 endif
 
 all: Socket
