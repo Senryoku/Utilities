@@ -63,7 +63,7 @@ SparseArray<Data>::SparseArray(const SparseArray<Data>& L) : _first(NULL), _coun
 	Node** ins = &_first;
 	while(tmp != NULL)
 	{
-		*ins = new Node(tmp->_data);
+		*ins = new Node(tmp->_idx, tmp->_data);
 		ins = &(*ins)->_next;
 		tmp = tmp->_next;
 	}
