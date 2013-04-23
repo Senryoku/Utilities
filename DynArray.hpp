@@ -3,6 +3,7 @@
 #include <functional>
 #include <iostream>
 #include <cstring> // memcpy
+#include <initializer_list>
 
 /*
  Implantation générique du type Tableau Dynamique
@@ -23,6 +24,7 @@ class DynArray
 	 * @see resize
 	**/
 	DynArray(size_t S = 1, const Data& D = Data());
+	DynArray(const std::initializer_list<Data>& L);
 	DynArray(const DynArray<Data>& V);
 	DynArray<Data>& operator=(const DynArray<Data>& V);
 	virtual ~DynArray();
@@ -68,6 +70,14 @@ DynArray<Data>::DynArray(size_t S, const Data& D) : _default(D), _count(0), _cap
 	_data = new Data[S];
 }
 
+template<typename Data>
+DynArray(const std::initializer_list<Data>& L) _default(Data()), _count(0), _capacity(L.size())
+{
+	_data = new Data[L.size()];
+	for(auto it = L.begin(); it != L.end(); ++it)
+		push_back(*it);
+}
+		
 template<typename Data>
 DynArray<Data>::DynArray(const DynArray<Data>& V) : _default(V._default), _count(V._count), _capacity(V._capacity)
 {

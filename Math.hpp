@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cmath>
 
 void wobble(float &CurrentPosition, float TargetPosition, float Force, float Friction, float &Spd)
