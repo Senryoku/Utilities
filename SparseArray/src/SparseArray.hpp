@@ -72,6 +72,7 @@ SparseArray<Data>::SparseArray(const SparseArray<Data>& L) : _first(NULL), _coun
 template<typename Data>
 SparseArray<Data>& SparseArray<Data>::operator=(const SparseArray<Data>& L)
 {
+	clear();
 	_count = L._count;
 	Node* tmp = L._first;
 	Node** ins = &_first;
