@@ -1,0 +1,273 @@
+digraph RadixTree {
+	0 [label=" (0)"];
+	1 [label="w (0)"];
+	2 [label="h (0)"];
+	3 [label="e (0)"];
+	4 [label="n (1)" style="filled" fillcolor="lightskyblue"];
+	3 -> 4 [label="when"]
+	5 [label="re (1)" style="filled" fillcolor="lightskyblue"];
+	3 -> 5 [label="where"]
+	2 -> 3
+	6 [label="ich (1)" style="filled" fillcolor="lightskyblue"];
+	2 -> 6 [label="which"]
+	1 -> 2
+	7 [label="ill (1)" style="filled" fillcolor="lightskyblue"];
+	1 -> 7 [label="will"]
+	8 [label="o (0)"];
+	9 [label="uld (1)" style="filled" fillcolor="lightskyblue"];
+	8 -> 9 [label="would"]
+	10 [label="rk (1)" style="filled" fillcolor="lightskyblue"];
+	8 -> 10 [label="work"]
+	1 -> 8
+	11 [label="rite (1)" style="filled" fillcolor="lightskyblue"];
+	1 -> 11 [label="write"]
+	12 [label="a (0)"];
+	13 [label="ter (1)" style="filled" fillcolor="lightskyblue"];
+	12 -> 13 [label="water"]
+	14 [label="nt (1)" style="filled" fillcolor="lightskyblue"];
+	12 -> 14 [label="want"]
+	1 -> 12
+	15 [label="e (0)"];
+	16 [label="ll (1)" style="filled" fillcolor="lightskyblue"];
+	15 -> 16 [label="well"]
+	17 [label="nt (1)" style="filled" fillcolor="lightskyblue"];
+	15 -> 17 [label="went"]
+	1 -> 15
+	0 -> 1
+	18 [label="y (0)"];
+	19 [label="our (1)" style="filled" fillcolor="lightskyblue"];
+	18 -> 19 [label="your"]
+	20 [label="ear (1)" style="filled" fillcolor="lightskyblue"];
+	18 -> 20 [label="year"]
+	0 -> 18
+	21 [label="s (0)"];
+	22 [label="a (0)"];
+	23 [label="id (1)" style="filled" fillcolor="lightskyblue"];
+	22 -> 23 [label="said"]
+	24 [label="me (1)" style="filled" fillcolor="lightskyblue"];
+	22 -> 24 [label="same"]
+	21 -> 22
+	25 [label="o (0)"];
+	26 [label="me (1)" style="filled" fillcolor="lightskyblue"];
+	25 -> 26 [label="some"]
+	27 [label="und (1)" style="filled" fillcolor="lightskyblue"];
+	25 -> 27 [label="sound"]
+	21 -> 25
+	28 [label="entence (1)" style="filled" fillcolor="lightskyblue"];
+	21 -> 28 [label="sentence"]
+	29 [label="how (1)" style="filled" fillcolor="lightskyblue"];
+	21 -> 29 [label="show"]
+	30 [label="mall (1)" style="filled" fillcolor="lightskyblue"];
+	21 -> 30 [label="small"]
+	31 [label="uch (1)" style="filled" fillcolor="lightskyblue"];
+	21 -> 31 [label="such"]
+	0 -> 21
+	32 [label="t (0)"];
+	33 [label="h (0)"];
+	34 [label="e (0)"];
+	35 [label="re (1)" style="filled" fillcolor="lightskyblue"];
+	34 -> 35 [label="there"]
+	36 [label="ir (1)" style="filled" fillcolor="lightskyblue"];
+	34 -> 36 [label="their"]
+	37 [label="n (1)" style="filled" fillcolor="lightskyblue"];
+	34 -> 37 [label="then"]
+	38 [label="m (1)" style="filled" fillcolor="lightskyblue"];
+	34 -> 38 [label="them"]
+	39 [label="se (1)" style="filled" fillcolor="lightskyblue"];
+	34 -> 39 [label="these"]
+	33 -> 34
+	40 [label="an (1)" style="filled" fillcolor="lightskyblue"];
+	33 -> 40 [label="than"]
+	41 [label="in (0)"];
+	42 [label="g (1)" style="filled" fillcolor="lightskyblue"];
+	41 -> 42 [label="thing"]
+	43 [label="k (1)" style="filled" fillcolor="lightskyblue"];
+	41 -> 43 [label="think"]
+	33 -> 41
+	44 [label="r (0)"];
+	45 [label="ough (1)" style="filled" fillcolor="lightskyblue"];
+	44 -> 45 [label="through"]
+	46 [label="ee (1)" style="filled" fillcolor="lightskyblue"];
+	44 -> 46 [label="three"]
+	33 -> 44
+	32 -> 33
+	47 [label="ime (1)" style="filled" fillcolor="lightskyblue"];
+	32 -> 47 [label="time"]
+	48 [label="ake (1)" style="filled" fillcolor="lightskyblue"];
+	32 -> 48 [label="take"]
+	49 [label="ell (1)" style="filled" fillcolor="lightskyblue"];
+	32 -> 49 [label="tell"]
+	50 [label="urn (1)" style="filled" fillcolor="lightskyblue"];
+	32 -> 50 [label="turn"]
+	0 -> 32
+	51 [label="e (0)"];
+	52 [label="ach (1)" style="filled" fillcolor="lightskyblue"];
+	51 -> 52 [label="each"]
+	53 [label="ven (1)" style="filled" fillcolor="lightskyblue"];
+	51 -> 53 [label="even"]
+	0 -> 51
+	54 [label="o (0)"];
+	55 [label="ther (1)" style="filled" fillcolor="lightskyblue"];
+	54 -> 55 [label="other"]
+	56 [label="ver (1)" style="filled" fillcolor="lightskyblue"];
+	54 -> 56 [label="over"]
+	57 [label="nly (1)" style="filled" fillcolor="lightskyblue"];
+	54 -> 57 [label="only"]
+	0 -> 54
+	58 [label="a (0)"];
+	59 [label="bout (1)" style="filled" fillcolor="lightskyblue"];
+	58 -> 59 [label="about"]
+	60 [label="fter (1)" style="filled" fillcolor="lightskyblue"];
+	58 -> 60 [label="after"]
+	61 [label="lso (1)" style="filled" fillcolor="lightskyblue"];
+	58 -> 61 [label="also"]
+	62 [label="round (1)" style="filled" fillcolor="lightskyblue"];
+	58 -> 62 [label="around"]
+	63 [label="nother (1)" style="filled" fillcolor="lightskyblue"];
+	58 -> 63 [label="another"]
+	0 -> 58
+	64 [label="m (0)"];
+	65 [label="a (0)"];
+	66 [label="ny (1)" style="filled" fillcolor="lightskyblue"];
+	65 -> 66 [label="many"]
+	67 [label="ke (1)" style="filled" fillcolor="lightskyblue"];
+	65 -> 67 [label="make"]
+	68 [label="de (1)" style="filled" fillcolor="lightskyblue"];
+	65 -> 68 [label="made"]
+	64 -> 65
+	69 [label="o (0)"];
+	70 [label="re (1)" style="filled" fillcolor="lightskyblue"];
+	69 -> 70 [label="more"]
+	71 [label="st (1)" style="filled" fillcolor="lightskyblue"];
+	69 -> 71 [label="most"]
+	64 -> 69
+	72 [label="u (0)"];
+	73 [label="ch (1)" style="filled" fillcolor="lightskyblue"];
+	72 -> 73 [label="much"]
+	74 [label="st (1)" style="filled" fillcolor="lightskyblue"];
+	72 -> 74 [label="must"]
+	64 -> 72
+	75 [label="ean (1)" style="filled" fillcolor="lightskyblue"];
+	64 -> 75 [label="mean"]
+	0 -> 64
+	76 [label="l (0)"];
+	77 [label="i (0)"];
+	78 [label="ke (1)" style="filled" fillcolor="lightskyblue"];
+	77 -> 78 [label="like"]
+	79 [label="ttle (1)" style="filled" fillcolor="lightskyblue"];
+	77 -> 79 [label="little"]
+	80 [label="ve (1)" style="filled" fillcolor="lightskyblue"];
+	77 -> 80 [label="live"]
+	81 [label="ne (1)" style="filled" fillcolor="lightskyblue"];
+	77 -> 81 [label="line"]
+	76 -> 77
+	82 [label="o (0)"];
+	83 [label="ok (1)" style="filled" fillcolor="lightskyblue"];
+	82 -> 83 [label="look"]
+	84 [label="ng (1)" style="filled" fillcolor="lightskyblue"];
+	82 -> 84 [label="long"]
+	76 -> 82
+	85 [label="a (0)"];
+	86 [label="rge (1)" style="filled" fillcolor="lightskyblue"];
+	85 -> 86 [label="large"]
+	87 [label="nd (1)" style="filled" fillcolor="lightskyblue"];
+	85 -> 87 [label="land"]
+	76 -> 85
+	0 -> 76
+	88 [label="into (1)" style="filled" fillcolor="lightskyblue"];
+	0 -> 88 [label="into"]
+	89 [label="n (0)"];
+	90 [label="umber (1)" style="filled" fillcolor="lightskyblue"];
+	89 -> 90 [label="number"]
+	91 [label="ame (1)" style="filled" fillcolor="lightskyblue"];
+	89 -> 91 [label="name"]
+	92 [label="eed (1)" style="filled" fillcolor="lightskyblue"];
+	89 -> 92 [label="need"]
+	0 -> 89
+	93 [label="c (0)"];
+	94 [label="o (0)"];
+	95 [label="uld (1)" style="filled" fillcolor="lightskyblue"];
+	94 -> 95 [label="could"]
+	96 [label="me (1)" style="filled" fillcolor="lightskyblue"];
+	94 -> 96 [label="come"]
+	93 -> 94
+	97 [label="a (0)"];
+	98 [label="ll (1)" style="filled" fillcolor="lightskyblue"];
+	97 -> 98 [label="call"]
+	99 [label="me (1)" style="filled" fillcolor="lightskyblue"];
+	97 -> 99 [label="came"]
+	93 -> 97
+	0 -> 93
+	100 [label="p (0)"];
+	101 [label="eople (1)" style="filled" fillcolor="lightskyblue"];
+	100 -> 101 [label="people"]
+	102 [label="art (1)" style="filled" fillcolor="lightskyblue"];
+	100 -> 102 [label="part"]
+	103 [label="lace (1)" style="filled" fillcolor="lightskyblue"];
+	100 -> 103 [label="place"]
+	0 -> 100
+	104 [label="f (0)"];
+	105 [label="i (0)"];
+	106 [label="rst (1)" style="filled" fillcolor="lightskyblue"];
+	105 -> 106 [label="first"]
+	107 [label="nd (1)" style="filled" fillcolor="lightskyblue"];
+	105 -> 107 [label="find"]
+	104 -> 105
+	108 [label="ollow (1)" style="filled" fillcolor="lightskyblue"];
+	104 -> 108 [label="follow"]
+	109 [label="arm (1)" style="filled" fillcolor="lightskyblue"];
+	104 -> 109 [label="farm"]
+	0 -> 104
+	110 [label="b (0)"];
+	111 [label="e (0)"];
+	112 [label="en (1)" style="filled" fillcolor="lightskyblue"];
+	111 -> 112 [label="been"]
+	113 [label="fore (1)" style="filled" fillcolor="lightskyblue"];
+	111 -> 113 [label="before"]
+	114 [label="cause (1)" style="filled" fillcolor="lightskyblue"];
+	111 -> 114 [label="because"]
+	110 -> 111
+	115 [label="ack (1)" style="filled" fillcolor="lightskyblue"];
+	110 -> 115 [label="back"]
+	0 -> 110
+	116 [label="d (0)"];
+	117 [label="o (0)"];
+	118 [label="wn (1)" style="filled" fillcolor="lightskyblue"];
+	117 -> 118 [label="down"]
+	119 [label="es (1)" style="filled" fillcolor="lightskyblue"];
+	117 -> 119 [label="does"]
+	116 -> 117
+	120 [label="ifferent (1)" style="filled" fillcolor="lightskyblue"];
+	116 -> 120 [label="different"]
+	0 -> 116
+	121 [label="know (1)" style="filled" fillcolor="lightskyblue"];
+	0 -> 121 [label="know"]
+	122 [label="g (0)"];
+	123 [label="ive (1)" style="filled" fillcolor="lightskyblue"];
+	122 -> 123 [label="give"]
+	124 [label="ood (1)" style="filled" fillcolor="lightskyblue"];
+	122 -> 124 [label="good"]
+	125 [label="reat (1)" style="filled" fillcolor="lightskyblue"];
+	122 -> 125 [label="great"]
+	0 -> 122
+	126 [label="very (1)" style="filled" fillcolor="lightskyblue"];
+	0 -> 126 [label="very"]
+	127 [label="just (1)" style="filled" fillcolor="lightskyblue"];
+	0 -> 127 [label="just"]
+	128 [label="h (0)"];
+	129 [label="e (0)"];
+	130 [label="lp (1)" style="filled" fillcolor="lightskyblue"];
+	129 -> 130 [label="help"]
+	131 [label="re (1)" style="filled" fillcolor="lightskyblue"];
+	129 -> 131 [label="here"]
+	128 -> 129
+	132 [label="ome (1)" style="filled" fillcolor="lightskyblue"];
+	128 -> 132 [label="home"]
+	0 -> 128
+	133 [label="r (0)"];
+	134 [label="ight (1)" style="filled" fillcolor="lightskyblue"];
+	133 -> 134 [label="right"]
+	135 [label="ead (1)" style="filled" fillcolor="lightskyblue"];
+	133 -> 135 [label="read"]
+	0 -> 133
+}

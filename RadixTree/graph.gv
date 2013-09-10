@@ -1,0 +1,41 @@
+digraph RadixTree {
+	0 [label=" (0)"];
+	1 [label="P (0)"];
+	2 [label="oir (0)"];
+	3 [label="ier (1)" style="filled" fillcolor="lightskyblue"];
+	2 -> 3 [label="Poirier"]
+	4 [label="e (1)" style="filled" fillcolor="lightskyblue"];
+	2 -> 4 [label="Poire"]
+	1 -> 2
+	5 [label="run (0)"];
+	6 [label="e (1)" style="filled" fillcolor="lightskyblue"];
+	5 -> 6 [label="Prune"]
+	7 [label="ier (1)" style="filled" fillcolor="lightskyblue"];
+	5 -> 7 [label="Prunier"]
+	1 -> 5
+	8 [label="ara (0)"];
+	9 [label="bolique (1)" style="filled" fillcolor="lightskyblue"];
+	8 -> 9 [label="Parabolique"]
+	1 -> 8
+	0 -> 1
+	10 [label="Fra (0)"];
+	11 [label="mbois (0)"];
+	12 [label="ier (1)" style="filled" fillcolor="lightskyblue"];
+	11 -> 12 [label="Framboisier"]
+	13 [label="e (1)" style="filled" fillcolor="lightskyblue"];
+	11 -> 13 [label="Framboise"]
+	10 -> 11
+	14 [label="is (0)"];
+	15 [label="e (1)" style="filled" fillcolor="lightskyblue"];
+	14 -> 15 [label="Fraise"]
+	16 [label="ier (1)" style="filled" fillcolor="lightskyblue"];
+	14 -> 16 [label="Fraisier"]
+	10 -> 14
+	0 -> 10
+	17 [label="Ceris (0)"];
+	18 [label="ier (1)" style="filled" fillcolor="lightskyblue"];
+	17 -> 18 [label="Cerisier"]
+	19 [label="e (1)" style="filled" fillcolor="lightskyblue"];
+	17 -> 19 [label="Cerise"]
+	0 -> 17
+}
