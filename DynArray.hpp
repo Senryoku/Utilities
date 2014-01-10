@@ -155,7 +155,7 @@ void DynArray<Data>::resize(size_t S)
 template<typename Data>
 void DynArray<Data>::shrink_to_fit()
 {
-	Data* tmp = new Data[_count];
+	Data* tmp = static_cast<Data*>(operator new[](_count * sizeof(Data)));
 	for(size_t i = 0; i < _count; ++i)
 		new(tmp + i) Data(_data[i]);
 	explicit_destruct();
