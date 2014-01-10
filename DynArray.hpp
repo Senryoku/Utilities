@@ -14,7 +14,8 @@ template<typename Data>
 class DynArray
 {
 	public:
-	typedef Data* iterator;
+	typedef Data*	iterator;
+	typedef Data	value_type;
 	
 	/** @brief Constructeur
 	 *
@@ -54,6 +55,9 @@ class DynArray
 	size_t		_capacity;
 
 	void swap(size_t I1, size_t I2);
+	
+	private:
+	void explicit_destruct();
 };
 
 template<typename Data>
@@ -65,24 +69,34 @@ void DynArray<Data>::swap(size_t I1, size_t I2)
 }
 	
 template<typename Data>
-DynArray<Data>::DynArray(size_t S, const Data& D) : _default(D), _count(0), _capacity(S)
+DynArray<Data>::DynArray(size_t S, const Data& D) : 
+	_default(D), 
+	_data(static_cast<Data*>(operator new[](S * sizeof(Data)))), // Reserve memory without calling default constructor
+	_count(0), 
+	_capacity(S)
 {
-	_data = new Data[S];
 }
 
 template<typename Data>
-DynArray(const std::initializer_list<Data>& L) _default(Data()), _count(0), _capacity(L.size())
+DynArray<Data>::DynArray(const std::initializer_list<Data>& L) : 
+	_default(Data()), 
+	_data(static_cast<Data*>(operator new[](L.size() * sizeof(Data)))), 
+	_count(0), 
+	_capacity(L.size())
 {
-	_data = new Data[L.size()];
 	for(auto it = L.begin(); it != L.end(); ++it)
 		push_back(*it);
 }
 		
 template<typename Data>
-DynArray<Data>::DynArray(const DynArray<Data>& V) : _default(V._default), _count(V._count), _capacity(V._capacity)
+DynArray<Data>::DynArray(const DynArray<Data>& V) : 
+	_default(V._default), 
+	_data(static_cast<Data*>(operator new[](V._capacity * sizeof(Data)))),
+	_count(V._count),
+	_capacity(V._capacity)
 {
-	_data = new Data[V._capacity];
-	memcpy(_data, V._data, V._capacity*sizeof(Data));
+	for(size_t i = 0; i < V.size(); ++i)
+		push_back(V[i]);
 }
 
 template<typename Data>
@@ -98,7 +112,8 @@ DynArray<Data>& DynArray<Data>::operator=(const DynArray<Data>& V)
 template<typename Data>
 DynArray<Data>::~DynArray()
 {
-	delete[] _data;
+	explicit_destruct();
+	operator delete[](_data);
 }
 
 template<typename Data>
@@ -107,7 +122,7 @@ void DynArray<Data>::push_back(const Data &D)
 	if(_capacity <= _count)
 		reserve(2*_capacity);
 
-	_data[_count] = D;
+	new(_data + _count) Data(D); // placement-new
 	_count++;	
 }
 
@@ -115,10 +130,11 @@ template<typename Data>
 void DynArray<Data>::reserve(size_t S)
 {
 	if(S <= _capacity) return;
-	Data* tmp = new Data[S];
+	Data* tmp = static_cast<Data*>(operator new[](S * sizeof(Data)));
 	for(size_t i = 0; i < _count; ++i)
-		tmp[i] = _data[i];
-	delete[] _data;
+		new(tmp + i) Data(_data[i]);
+	explicit_destruct();
+	operator delete[](_data);
 	_data = tmp;
 	_capacity = S;
 }
@@ -132,7 +148,7 @@ void DynArray<Data>::resize(size_t S)
 		reserve(S);
 	
 	for(size_t i = _count; i < S; ++i)
-		_data[i] = _default;
+		new(_data + i) Data(_default);
 	_count = S;
 }
 
@@ -141,8 +157,9 @@ void DynArray<Data>::shrink_to_fit()
 {
 	Data* tmp = new Data[_count];
 	for(size_t i = 0; i < _count; ++i)
-		tmp[i] = _data[i];
-	delete[] _data;
+		new(tmp + i) Data(_data[i]);
+	explicit_destruct();
+	operator delete[](_data);
 	_data = tmp;
 	_capacity = _count;
 }
@@ -170,7 +187,8 @@ void DynArray<Data>::erase(size_t I)
 	--_count;
 	while(I < _count - 1)
 	{
-		_data[I] = _data[I + 1];
+		new(_data + I) Data(_data[I + 1]);
+		_data[I + 1].~Data();
 		++I;
 	}
 }
@@ -183,7 +201,8 @@ void DynArray<Data>::erase(iterator it)
 	++it;
 	while(it != end())
 	{
-		*it2 = *it;
+		new(it2) Data(*it);
+		it->~Data();
 		++it;
 		++it2;
 	}
@@ -194,7 +213,15 @@ template<typename Data>
 void DynArray<Data>::clear()
 {
 	// Appel explicite aux destructeurs pour éviter la réallocation
+	explicit_destruct();
+	_count = 0;
+}
+
+// Private
+
+template<typename Data>
+void DynArray<Data>::explicit_destruct()
+{
 	for(size_t i = 0; i < _count; ++i)
 		_data[i].~Data();
-	_count = 0;
 }
