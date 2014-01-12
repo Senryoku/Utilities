@@ -2,7 +2,6 @@
 
 #include <functional>
 #include <iostream>
-#include <cstring> // memcpy
 #include <initializer_list>
 
 /*
