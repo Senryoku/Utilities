@@ -123,7 +123,7 @@ void DynArray<Data>::push_back(const Data &D)
 		reserve(2*_capacity);
 
 	new(_data + _count) Data(D); // placement-new
-	_count++;	
+	++_count;	
 }
 
 template<typename Data>
@@ -185,7 +185,7 @@ void DynArray<Data>::erase(size_t I)
 {
 	_data[I].~Data();
 	--_count;
-	while(I < _count - 1)
+	while(I < _count)
 	{
 		new(_data + I) Data(_data[I + 1]);
 		_data[I + 1].~Data();
@@ -206,7 +206,7 @@ void DynArray<Data>::erase(iterator it)
 		++it;
 		++it2;
 	}
-	_count--;
+	--_count;
 }
 
 template<typename Data>
