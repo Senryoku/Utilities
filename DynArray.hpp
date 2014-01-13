@@ -14,8 +14,59 @@ template<typename Data>
 class DynArray
 {
 	public:
-	typedef Data*	iterator;
-	typedef Data	value_type;
+	typedef Data		value_type;
+	typedef Data&		reference;
+	typedef const Data&	const_reference;
+	typedef Data*		pointer;
+	typedef const Data*	const_pointer;
+	
+	class iterator 
+	{
+		public:
+		iterator(Data* ptr) : _ptr(ptr)
+		{
+		}
+		
+		operator Data*() const { return _ptr; }
+		iterator& operator++()
+		{
+			++_ptr;
+			return *this;
+		}
+		iterator operator++(int)
+		{
+			iterator tmp(_ptr);
+			++_ptr;
+			return tmp;
+		}
+		
+		private:
+		Data*	_ptr;
+	};
+	
+	class const_iterator 
+	{
+		public:
+		const_iterator(const Data* ptr) : _ptr(ptr)
+		{
+		}
+		
+		operator const Data*() const { return _ptr; }
+		const_iterator& operator++()
+		{
+			++_ptr;
+			return *this;
+		}
+		const_iterator operator++(int)
+		{
+			const_iterator tmp(_ptr);
+			++_ptr;
+			return tmp;
+		}
+		
+		private:
+		const Data*	_ptr;
+	};
 	
 	/** @brief Constructeur
 	 *
@@ -35,6 +86,8 @@ class DynArray
 	Data& operator[](size_t I) const { return _data[I]; }
 	iterator begin() { return _data; }
 	iterator end() { return _data + _count; }
+	const_iterator begin() const { return _data; }
+	const_iterator end() const { return _data + _count; }
 	
 	void push_back(const Data &D);
 	
@@ -185,7 +238,7 @@ void DynArray<Data>::erase(size_t I)
 {
 	_data[I].~Data();
 	--_count;
-	while(I < _count - 1)
+	while(I < _count)
 	{
 		new(_data + I) Data(_data[I + 1]);
 		_data[I + 1].~Data();
