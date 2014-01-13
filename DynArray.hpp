@@ -2,7 +2,6 @@
 
 #include <functional>
 #include <iostream>
-#include <cstring> // memcpy
 #include <initializer_list>
 
 /*
@@ -176,7 +175,7 @@ void DynArray<Data>::push_back(const Data &D)
 		reserve(2*_capacity);
 
 	new(_data + _count) Data(D); // placement-new
-	_count++;	
+	++_count;	
 }
 
 template<typename Data>
@@ -259,7 +258,7 @@ void DynArray<Data>::erase(iterator it)
 		++it;
 		++it2;
 	}
-	_count--;
+	--_count;
 }
 
 template<typename Data>
