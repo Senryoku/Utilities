@@ -92,26 +92,26 @@ void BinaryHeap<Data, Comparator>::pop()
 			{
 				if(_comp(DynArray<Data>::_data[tmp], DynArray<Data>::_data[right(tmp)]))
 				{
-					swap(tmp, right(tmp));
+					this->swap(tmp, right(tmp));
 					tmp = right(tmp);
 				} else if(_comp(DynArray<Data>::_data[tmp], DynArray<Data>::_data[left(tmp)])) {
-					swap(tmp, left(tmp));
+					this->swap(tmp, left(tmp));
 					tmp = left(tmp);
 				} else break;
 			} else {
 				if(_comp(DynArray<Data>::_data[tmp], DynArray<Data>::_data[left(tmp)]))
 				{
-					swap(tmp, left(tmp));
+					this->swap(tmp, left(tmp));
 					tmp = left(tmp);
 				} else if(_comp(DynArray<Data>::_data[tmp], DynArray<Data>::_data[right(tmp)])) {
-					swap(tmp, right(tmp));
+					this->swap(tmp, right(tmp));
 					tmp = right(tmp);
 				} else break;
 			}
 		} else if(DynArray<Data>::_count > left(tmp)) {
 				if(_comp(DynArray<Data>::_data[tmp], DynArray<Data>::_data[left(tmp)]))
 				{
-					swap(tmp, left(tmp));
+					this->swap(tmp, left(tmp));
 					tmp = left(tmp);
 				} else break;
 		} else break;

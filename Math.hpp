@@ -26,3 +26,8 @@ inline float berstein(unsigned int m, unsigned int i, float u)
 {
 	return binomial(m, i)*pow(u, i)*pow(1 - u, m - i);
 }
+
+constexpr unsigned int static_factorial(unsigned int n)
+{
+	return (n < 2) ? 1 : n*static_factorial(n - 1);
+}

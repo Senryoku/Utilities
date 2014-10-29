@@ -24,7 +24,7 @@ class Wobble : public EvolvingValue<float> {
 	}
 	
 	float step() {
-		_speed = (_speed + ((_target - _value)/2.f) * _force) * (1.f - _friction);
+		_speed = (_speed + ((_target - _value)) * _force) * (1.f - _friction);
 		_value += _speed;
 	}
 	
