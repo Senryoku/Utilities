@@ -177,7 +177,6 @@ void SkipList<Data, Comparator>::insert(const Data &D)
 template<typename Data, typename Comparator>
 void SkipList<Data, Comparator>::erase(iterator I)
 {
-	/// @todo Implémenter
 	erase(*I);
 }
 
