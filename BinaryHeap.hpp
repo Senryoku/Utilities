@@ -1,21 +1,13 @@
 #pragma once
 
+#include <functional>
+
 #include "DynArray.hpp"
 
-template<typename Data>
-class defaultLessPrioritary
-{
-	public:
-	bool operator()(const Data& D1, const Data& D2)
-	{
-		return D1 < D2;
-	}
-};
-
-template<typename Data, typename Comparator = defaultLessPrioritary<Data> >
+template<typename Data, typename Comparator = std::less<Data>>
 class BinaryHeap : public DynArray<Data>
 {
-	public:
+public:
 	BinaryHeap(size_t S);
 	BinaryHeap(Comparator C = Comparator(), size_t S = 1);
 	~BinaryHeap();
@@ -27,7 +19,7 @@ class BinaryHeap : public DynArray<Data>
 	template<typename D, typename C>
 	friend std::ostream& operator<<(std::ostream& out, const BinaryHeap<D, C>& BH);
 
-	protected:
+protected:
 	Comparator	_comp;
 	
 	inline static size_t father(size_t I) { return I/2; }
@@ -117,4 +109,3 @@ void BinaryHeap<Data, Comparator>::pop()
 		} else break;
 	}
 }
-
